@@ -29,7 +29,7 @@ if(!movies.length){
     <Box width="80%" p={4}>
 
       <ListFilter movieCount={movies.length}/>
-     <MoviesList/>
+     <MoviesList movies={movies}/>
         
     </Box>
   )
