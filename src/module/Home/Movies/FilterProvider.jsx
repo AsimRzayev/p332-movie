@@ -1,15 +1,11 @@
 import React from 'react'
+import { useNavigateParams } from '../../../hooks';
 
 const FilterContext=React.createContext({
-    filter:{
-        category:[],
-        maxRating:null,
-        language:null,
-        startDate:null,
-        endDate:null
-    },
-    setFilter:null
 });
+
+
+
 
 export function useFilter(){
 
@@ -17,14 +13,21 @@ export function useFilter(){
 }
 
 const FilterProvider = ({children}) => {
+ 
+    const myNavigate= useNavigateParams()
 
     const [filter,setFilter]=React.useState({
         category:[],
-        maxRating:null,
-        language:null,
-        startDate:null,
-        endDate:null
+        maxRating:"",
+        language:[],
     })
+
+    React.useEffect(()=>{
+
+        myNavigate("",filter)
+
+    },[filter,myNavigate])
+
 
   return (
     <FilterContext.Provider value={{

@@ -72,7 +72,16 @@ setFilter((filter)=>{
 
                 <VStack spacing={4} align='stretch'>
                     {
-                        filters.languages.map(language=><Checkbox key={language}  colorScheme="whiteAlpha">{language}</Checkbox>)
+                        filters.languages.map(language=><Checkbox key={language} onChange={(e)=>{
+                            const isChecked=e.target.checked;
+    
+    setFilter((filter)=>{
+        return {
+            ...filter,
+            language:isChecked?[...filter.language,language]:filter.language.filter(c=>c!==language)
+        }
+    })
+                        }}  colorScheme="whiteAlpha">{language}</Checkbox>)
                     }
                     
                 </VStack>
